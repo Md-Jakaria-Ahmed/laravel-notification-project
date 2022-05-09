@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/*=================== sending mail ====================*/
+
 Route::get('users', function() {
     return User::all();
 });
@@ -35,3 +37,28 @@ Route::get('users/{id}/send', function($id) {
    $user->notify(new EmailNotification());
    return view('welcome');
 })->name('notification'); 
+
+
+
+/*===================== end ==========================*/
+
+
+
+/*==============sendinng  mail with custom ====================*/
+
+
+
+Route::get('/notification', function() {
+    
+    $users = User::all();
+    foreach($users as $user){
+        Notification::send($user, new EmailNotification());
+    }
+    return view('welcome');
+
+})->name('notification');
+
+
+
+
+/*====================== end ==================================*/

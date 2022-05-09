@@ -80,9 +80,15 @@
             @endif
 
             <div class="content">
+                <div>
+                    <a href="{{ route('notification') }}" style="text-decoration: none;"><span style="border: 1px solid #000;padding: 5px;background: #000;color:#fff;font-weight:bold;">SEND MAIL</span></a>
+                </div>
+
                 <div class="title m-b-md">
                     Laravel
                 </div>
+
+                
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

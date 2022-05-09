@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Notifications\EmailNotification;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +21,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('users', function() {
+    return User::all();
+});
+
+Route::get('users/{id}', function($id) {
+    $user = User::findOrFail($id);
+    return $user;
+});
+Route::get('users/{id}/send', function($id) {
+   $user = User::find($id);
+   $user->notify(new EmailNotification());
+   return view('welcome');
+})->name('notification'); 
